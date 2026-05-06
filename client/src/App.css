@@ -1,0 +1,138 @@
+body {
+  font-family: Arial;
+  background: #f4f6f8;
+}
+/* container */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+
+}
+
+/* 🔥 mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+/* cards */
+.card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* top section */
+.top {
+  display: flex;
+  gap: 10px;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .top {
+    flex-direction: column;
+  }
+}
+
+/* total card */
+.summary {
+  flex: 1;
+  text-align: center;
+  background:linear-gradient(135deg, #4CAF50, #2e7d32);
+  color: white;
+}
+/* inputs */
+input {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+/* buttons */
+button {
+  margin: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+}
+/* button colors */
+button[type="submit"] {
+  background: #4CAF50;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* edit button */
+button:nth-child(1) {
+  background: #2196F3;
+}
+
+/* delete button */
+button:nth-child(2) {
+  background: #f44336;
+}
+
+
+/* chart box */
+.chart-box {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* DARK MODE */
+.dark {
+  background: #121212;
+  color: white;
+}
+
+.dark .card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark input {
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark button {
+  opacity: 0.9;
+}
+
+.dark .chart-box {
+  background: #1e1e1e;
+}
+@media (max-width: 600px) {
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 600px) {
+  button {
+    margin-top: 5px;
+  }
+}
