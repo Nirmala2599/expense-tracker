@@ -1,10 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const Expense = require("../models/Expense");
+const auth = require("../middleware/authMiddleware");
 
 
 // Add Expense
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
+  const expense = await Expense.create({
+    ...req.body,
+    user: req.userId,
+  });
+
+  res.json(expense);
+
   try {
     const { amount, category, note } = req.body;
 
@@ -23,7 +31,13 @@ router.post("/", async (req, res) => {
 });
 
 //Get All Expenses
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
+  const expenses = await Expense.find({
+    user: req.userId,
+  });
+
+  res.json(expenses);
+
   try {
     const expenses = await Expense.find().sort({ date: -1 });
     res.json(expenses);

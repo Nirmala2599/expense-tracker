@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./App.css";import ExpenseChart from "./ExpenseChart";
+import "./App.css";
+import ExpenseChart from "./ExpenseChart";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -27,10 +35,11 @@ function App() {
 
   return color;
 }
+const API = "https://expense-tracker-mlzm.onrender.com/api/expenses";
 
   // GET
   const fetchExpenses = async () => {
-    const res = await axios.get("http://localhost:5000/api/expenses");
+    const res = await axios.get(API);
     setExpenses(res.data);
   }
 
@@ -43,19 +52,25 @@ const addExpense = async (e) => {
 
   if (editId) {
     // UPDATE (PUT)
-    await axios.put(`http://localhost:5000/api/expenses/${editId}`, {
+    await axios.put(`${API}/${editId}`, {
       amount,
       category,
       note,
     });
   } else {
     // CREATE (POST)
-    await axios.post("http://localhost:5000/api/expenses", {
+    await axios.post(API, {
       amount,
       category,
       note,
     });
   }
+  const token = localStorage.getItem("token");
+  axios.get(API, {
+  headers: {
+    Authorization: token,
+  },
+});
 
        // reset
     setAmount("");
@@ -67,7 +82,7 @@ const addExpense = async (e) => {
     fetchExpenses();
   };
   const deleteExpense = async (id) => {
-  await axios.delete(`http://localhost:5000/api/expenses/${id}`);
+  await axios.delete(`${API}/${id}`);
   fetchExpenses(); // refresh
 };
  
@@ -82,10 +97,22 @@ const handleEdit = (expense) => {
 
 
   return (
+
+
     <div className={darkMode ? "container dark" : "container"}>
        <h1>Expense Tracker<button onClick={() => setDarkMode(!darkMode)}>
   {darkMode ? "☀️ Light" : "🌙 Dark"}
 </button></h1>
+
+  <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/reset/:token" element={<ResetPassword />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      </Routes>
+    </BrowserRouter>
 
        <div className="top">
       <div className="card summary">
