@@ -72,6 +72,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   color: white;
+  background: #dd2f2f;
 }
 /* button colors */
 button[type="submit"] {
@@ -135,4 +136,38 @@ button:nth-child(2) {
   button {
     margin-top: 5px;
   }
+}
+.summary-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 180px;
+  padding: 20px;
+  border-radius: 18px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+}
+
+.income {
+  background: linear-gradient(135deg, #4CAF50, #81C784);
+}
+
+.expense {
+  background: linear-gradient(135deg, #f44336, #e57373);
+}
+
+.balance {
+  background: linear-gradient(135deg, #2196F3, #64B5F6);
 }
