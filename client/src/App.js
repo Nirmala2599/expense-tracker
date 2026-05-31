@@ -8,6 +8,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import Analytics from "./pages/Analytics";
+import Home from "./pages/Home"
+
 
 function App() {
 return (
@@ -18,6 +21,9 @@ return (
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/reset/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/home" element={<Home />} />
+ 
       </Routes>
     </BrowserRouter>
   );

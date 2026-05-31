@@ -16,6 +16,7 @@ function ForgotPassword() {
   };
 
   return (
+     <div className="mm">
     <div className="auth-container">
       <h2>Forgot Password</h2>
 
@@ -33,6 +34,7 @@ function ForgotPassword() {
           Send Reset Link
         </button>
       </form>
+    </div>
     </div>
   );
 }

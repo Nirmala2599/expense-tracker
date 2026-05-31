@@ -19,6 +19,7 @@ function ResetPassword() {
   };
 
   return (
+     <div className="mm">
     <div className="auth-container">
       <h2>Reset Password</h2>
 
@@ -32,10 +33,11 @@ function ResetPassword() {
           }
         />
 
-        <button>
+        <button  >
           Reset Password
         </button>
       </form>
+    </div>
     </div>
   );
 }

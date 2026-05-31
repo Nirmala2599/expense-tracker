@@ -19,8 +19,9 @@ function Register() {
   };
 
   return (
+     <div className="mm">
     <div className="auth-container">
-      <h2>Register</h2>
+      <h2>Create Account ✨</h2>
 
       <form onSubmit={register}>
         <input
@@ -43,6 +44,7 @@ function Register() {
       </form>
 
       <Link to="/">Login</Link>
+    </div>
     </div>
   );
 }

@@ -19,12 +19,21 @@ function Login() {
     localStorage.setItem("name", res.data.name);
 
     alert("Login success");
-    navigate("/dashboard");
+    if (res.data.token) {
+  localStorage.setItem(
+    "token",
+    res.data.token
+  );
+
+  navigate("/home");
+}
+  
   };
 
   return (
+    <div className="mm">
     <div className="auth-container">
-      <h2>Login</h2>
+      <h2>Welcome Back 👋</h2>
 
       <form onSubmit={login}>
         <input
@@ -44,6 +53,7 @@ function Login() {
       <Link to="/register">Register</Link>
       <br />
       <Link to="/forgot">Forgot Password</Link>
+    </div>
     </div>
   );
 }
