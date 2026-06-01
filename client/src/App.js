@@ -1,7 +1,6 @@
-
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react"; 
+import { useEffect, useState } from "react";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -10,30 +9,42 @@ import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import Analytics from "./pages/Analytics";
-import Home from "./pages/Home"
-
+import Home from "./pages/Home";
 
 function App() {
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-  // Backend wake up பண்ணு
-  fetch("https://expense-tracker-mlzm.onrender.com/")
-    .then(() => console.log("Server awake!"))
-    .catch(() => console.log("Server starting..."));
-}, []);
-return (
-   <BrowserRouter>
+    fetch("https://expense-tracker-mlzm.onrender.com/")
+      .then(() => setReady(true))
+      .catch(() => setReady(true));
+  }, []);
+
+  if (!ready) return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      fontSize: "20px"
+    }}>
+      ⏳ Loading... Please wait
+    </div>
+  );
+
+  return (
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/reset/:token" element={<ResetPassword />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/home" element={<Home />} />
- 
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;
