@@ -105,21 +105,27 @@ const addExpense = async (e) => {
 
   fetchExpenses();
 };
-  const deleteExpense = async (id) => {
-  await axios.delete(`${API}/${id}`);
-  fetchExpenses(); // refresh
+
+const deleteExpense = async (id) => {
+  const token = localStorage.getItem("token");
+  await axios.delete(`${API}/${id}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  fetchExpenses();
 };
+function handleEdit(item) {
+  setAmount(item.amount);
+  setCategory(item.category);
+  setNote(item.note);
+  setType(item.type);
+  setDate(item.date?.split("T")[0]);
+  setEditId(item._id);
+}
+
  
-
-
-  function handleEdit(expense) {
-    setAmount(expense.amount);
-    setCategory(expense.category);
-    setNote(expense.note);
-    setEditId(expense._id);
-  }
-
-    const name = localStorage.getItem("name");
+  const name = localStorage.getItem("name");
 console.log(name);
 
 const income = expenses

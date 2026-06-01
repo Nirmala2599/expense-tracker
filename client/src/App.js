@@ -1,6 +1,7 @@
 
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react"; 
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,6 +14,13 @@ import Home from "./pages/Home"
 
 
 function App() {
+
+  useEffect(() => {
+  // Backend wake up பண்ணு
+  fetch("https://expense-tracker-mlzm.onrender.com/")
+    .then(() => console.log("Server awake!"))
+    .catch(() => console.log("Server starting..."));
+}, []);
 return (
    <BrowserRouter>
       <Routes>
