@@ -8,7 +8,7 @@ function ForgotPassword() {
     e.preventDefault();
 
     const res = await axios.post(
-      "http://localhost:5000/api/auth/forgot-password",
+      "https://expense-tracker-mlzm.onrender.com/api/auth/forgot-password",
       { email }
     );
 

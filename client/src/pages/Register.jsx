@@ -11,7 +11,7 @@ function Register() {
     e.preventDefault();
 
     await axios.post(
-      "http://localhost:5000/api/auth/register",
+      "https://expense-tracker-mlzm.onrender.com/api/auth/register",
       { name,email,password }
     );
 

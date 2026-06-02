@@ -11,7 +11,7 @@ function ResetPassword() {
     e.preventDefault();
 
     const res = await axios.post(
-      `http://localhost:5000/api/auth/reset-password/${token}`,
+      `https://expense-tracker-mlzm.onrender.com/api/auth/reset-password/${token}`,
       { password }
     );
 

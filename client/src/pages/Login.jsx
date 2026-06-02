@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
 
     const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      "https://expense-tracker-mlzm.onrender.com/api/auth/login",
       { email, password }
     );
 
