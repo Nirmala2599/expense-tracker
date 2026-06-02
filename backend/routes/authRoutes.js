@@ -76,13 +76,21 @@ router.post("/forgot-password", async (req, res) => {
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port:  465,
-  secure: true,
+  service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL,
+    pass: process.env.APP_PASSWORD,
   },
+});
+await transporter.sendMail({
+  from: process.env.EMAIL,
+  to: email,
+  subject: "Expense Tracker Reset Password",
+  html: `
+    <h2>Password Reset</h2>
+    <p>Click below link:</p>
+    <a href="${resetLink}">Reset Password</a>
+  `,
 });
 
 const resetLink =
@@ -91,7 +99,7 @@ const resetLink =
 try {
   console.log("Sending to:", email);
   await transporter.sendMail({ 
-    from: process.env.EMAIL_USER,
+    from: process.env.EMAIL,
     to: email,
     subject: "Expense Tracker - Password Reset Link",
      html: `
