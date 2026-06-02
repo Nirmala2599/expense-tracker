@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // ✅ add
+
   const navigate = useNavigate();
 
   const login = async (e) => {
@@ -41,11 +43,28 @@ function Login() {
           onChange={(e)=>setEmail(e.target.value)}
         />
 
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e)=>setPassword(e.target.value)}
-        />
+             {/* Password + Eye icon */}
+          <div style={{ position: "relative" }}>
+            <input
+              type={showPassword ? "text" : "password"} // ✅
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ width: "100%", paddingRight: "40px" }}
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                fontSize: "18px",
+              }}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
 
         <button>Login</button>
       </form>
