@@ -78,8 +78,8 @@ console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.APP_PASSWORD,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -89,7 +89,7 @@ const resetLink =
 
 try {
   await transporter.sendMail({
-    from: process.env.EMAIL,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: "Expense Tracker - Password Reset Link",
     html: `
@@ -110,7 +110,7 @@ try {
     message: "Email failed",
   });
 }
-
+}); 
  
 
 // RESET PASSWORD
