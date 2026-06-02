@@ -1,11 +1,18 @@
 import { useState } from "react";
 import axios from "axios";
 
+
 function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleForgot = async (e) => {
     e.preventDefault();
+    console.log("Email sending:", email);
+    
+    if (!email) {
+    alert("Please enter email!");
+    return;
+  }
 
     const res = await axios.post(
       "https://expense-tracker-mlzm.onrender.com/api/auth/forgot-password",
