@@ -82,36 +82,22 @@ const transporter = nodemailer.createTransport({
     pass: process.env.APP_PASSWORD,
   },
 });
-await transporter.sendMail({
-  from: process.env.EMAIL,
-  to: email,
-  subject: "Expense Tracker Reset Password",
-  html: `
-    <h2>Password Reset</h2>
-    <p>Click below link:</p>
-    <a href="${resetLink}">Reset Password</a>
-  `,
-});
 
 const resetLink =
 `https://lively-twilight-222afb.netlify.app/reset/${token}`;
 
+
 try {
-  console.log("Sending to:", email);
-  await transporter.sendMail({ 
+  await transporter.sendMail({
     from: process.env.EMAIL,
     to: email,
     subject: "Expense Tracker - Password Reset Link",
-     html: `
-  <h2>Expense Tracker</h2>
-  <p>Click below to reset your password:</p>
-  <a href="${resetLink}">Reset Password</a>
-`,
- 
-    
+    html: `
+      <h2>Expense Tracker</h2>
+      <p>Click below to reset your password:</p>
+      <a href="${resetLink}">Reset Password</a>
+    `,
   });
-
-  console.log("Email sent successfully");
 
   res.json({
     message: "Reset email sent",
@@ -125,7 +111,7 @@ try {
   });
 }
 
-});
+ 
 
 // RESET PASSWORD
 router.post("/reset-password/:token", async (req, res) => {
