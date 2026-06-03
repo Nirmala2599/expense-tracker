@@ -88,7 +88,7 @@ console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 
 
 const resetLink =
-`https://lively-twilight-222afb.netlify.app/reset/${token}`;
+`http://localhost:3000/reset/${token}`;
 
 
 try {
