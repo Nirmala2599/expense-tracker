@@ -70,8 +70,8 @@ function Login() {
       </form>
 
       <Link to="/register">Register</Link>
-      <br />
-      <Link to="/forgot">Forgot Password</Link>
+      
+      
     </div>
     </div>
   );

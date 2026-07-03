@@ -68,11 +68,7 @@ function Auth() {
           ? "New user? Register"
           : "Already have account? Login"}
       </p>
-      <p>
-  <a href="/forgot">
-    Forgot Password?
-  </a>
-</p>
+    
     </div>
     
   );
